@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% comment %} Aqui van comentarios {% endcomment %}
+
+{% block titulo %} Inicio {% endblock %}
+
+{% block encabezado %} 
+	<h1>Recetario ;) </h1>
+{% endblock %}
+
+{% block contenido %}
+  <p>
+	  Actualmente tenemos registradas: 
+     {% with total=recetas.count %} 
+		{{total}} receta{{total|pluralize}}
+	 {% endwith %}
+  </p>	
+	<ul>		
+	  {% for dato in recetas %}
+
+
+
+
+
+	  <!-- li class="{% cycle 'impar' 'par' %}">{{dato.titulo|title}}</li -->
+
+
+
+	  <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-cutlery"></i>{{dato.titulo|title}}</h4>
+                    </div>
+                    <div class="panel-body">{{dato.ingredientes}}
+                        <p></p>
+                        <a class="btn btn-primary">Vista Previa</a>
+                    </div>
+                </div>
+            </div>
+
+
+		<!-- Large modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+		<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg">
+		    <div class="modal-content">
+		      ...
+		    </div>
+		  </div>
+		</div>
+	  
+
+	  {% empty %}
+	  <li><div class="alert alert-warning" role="alert">No hay recetas registradas aún.</div></li>
+	  {% endfor %}
+	</ul>
+{% endblock %}
